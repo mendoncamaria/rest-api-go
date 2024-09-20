@@ -33,7 +33,14 @@ func (uc *UserController) CreateUser(ctx *gin.Context) {
 }
 
 func (uc *UserController) GetUser(ctx *gin.Context) {
-	ctx.JSON(200, "")
+	username := ctx.Param("name")
+	user, err := uc.userService.GetUser(&username)
+
+	if err != nil {
+		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, user)
 }
 
 func (uc *UserController) GetAll(ctx *gin.Context) {
