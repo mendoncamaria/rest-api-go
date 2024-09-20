@@ -12,7 +12,7 @@ type UserServiceImpl struct {
 	ctx            context.Context
 }
 
-func NewUserService(usercollection *mongo.Collection, ctx context.Context) userService {
+func NewUserService(usercollection *mongo.Collection, ctx context.Context) UserService {
 	return &UserServiceImpl{
 		usercollection: usercollection,
 		ctx:            ctx,
