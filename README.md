@@ -6,13 +6,13 @@ This is a backend focussed project mainly used to learn CRUD (create, read, upda
 
 
 run: 
-go run main.go
+`go run main.go`
 
 open thunderclient extension in vscode
 
 create:      
-url: http://localhost:9090/v1/user/create
-type: POST
+url: http://localhost:9090/v1/user/create     
+type: POST     
 payload: {
   "name": "Maxie",
   "age": 25,
@@ -21,19 +21,19 @@ payload: {
     "city": "udupi",
     "pincode": 576101
   }
-}
+}          
 response: {
   "message": "success"
 }
 
 -------------------------
 get specific user:      
-url: http://localhost:9090/v1/user/get/Maxie
-type: GET
-payload: blank
+url: http://localhost:9090/v1/user/get/Maxie     
+type: GET     
+payload: blank     
 response 1 (no user found): {
   "message": "mongo: no documents in result"
-}
+}     
 response 2 : {
   "name": "Maxie",
   "age": 25,
@@ -46,10 +46,10 @@ response 2 : {
 
 -------------------------
 get all users:      
-url: http://localhost:9090/v1/user/getall
-type: GET
-payload: blank
-response: [
+url: http://localhost:9090/v1/user/getall     
+type: GET     
+payload: blank     
+response: [     
   {
     "name": "Maxie",
     "age": 25,
@@ -63,8 +63,8 @@ response: [
 
 -------------------------
 update user details:      
-url: http://localhost:9090/v1/user/update
-type: PATCH
+url: http://localhost:9090/v1/user/update     
+type: PATCH     
 payload: {
   "name": "Maxie",
   "age": 55,
@@ -74,16 +74,16 @@ payload: {
     "pincode": 576101
   }
   
-}
+}     
 response: {
   "message": "success"
 }
 
 -------------------------
 delete user:      
-url: http://localhost:9090/v1/user/delete/Maxie
-type: DELETE
-payload: blank
+url: http://localhost:9090/v1/user/delete/Maxie     
+type: DELETE      
+payload: blank     
 response: {
   "message": "success"
 }
