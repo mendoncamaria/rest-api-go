@@ -25,8 +25,80 @@ payload: {
 response: {
   "message": "success"
 }
+-x-
+payload: blank
+response: {
+  "message": "EOF"
+}
+-x-
+invalid address format
+payload: {
+  "name": "Maxie",
+  "age": 25,
+  "address": "karnataka"
+}
+response: {
+  "message": "json: cannot unmarshal string into Go struct field User.address of type models.Address"
+}
+-x-
+missing name
 
--------------------------
+payload: {
+  "age": 25,
+  "address": {
+    "state": "karnataka",
+    "city": "udupi",
+    "pincode": 576101
+  }
+}
+response: {
+  "message": "Please Enter a name to add the user"
+}
+-x-
+missing age
+
+payload: {
+  "name": "Maria",
+  "address": {
+    "state": "karnataka",
+    "city": "udupi",
+    "pincode": 576101
+  }
+} 
+response: {
+  "message": "Please Enter valid age of the user"
+}
+-x-
+missing address
+
+payload: {
+  "name": "Maria",
+  "age": 25,
+  "address": {
+    "city": "udupi",
+    "pincode": 576101
+  }
+} 
+{
+  "name": "Maria",
+  "age": 25,
+  "address": {
+    "state": "karnataka",
+    "pincode": 576101
+  }
+} 
+{
+  "name": "Maria",
+  "age": 25,
+  "address": {
+    "state": "karnataka",
+    "city": "udupi",
+  }
+} 
+response: {
+  "message": "Please Enter valid age of the user"
+}
+----------------------------------------------------------------------------
 get specific user:      
 url: http://localhost:9090/v1/user/get/Maxie     
 type: GET     
