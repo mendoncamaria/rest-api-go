@@ -24,6 +24,18 @@ func (uc *UserController) CreateUser(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 		return
 	}
+	if user.Name == "" {
+		ctx.JSON(http.StatusBadRequest, gin.H{"message": "Please Enter a name to add the user"})
+		return
+	}
+	if user.Age == 0 {
+		ctx.JSON(http.StatusBadRequest, gin.H{"message": "Please Enter valid age of the user"})
+		return
+	}
+	if user.Address.State == "" || user.Address.City == "" || user.Address.Pincode == 0 {
+		ctx.JSON(http.StatusBadRequest, gin.H{"message": "Incomplete Address"})
+		return
+	}
 	err := uc.userService.CreateUser(&user)
 	if err != nil {
 		ctx.JSON(http.StatusBadGateway, gin.H{"message": err.Error()})
