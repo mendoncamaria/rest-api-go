@@ -1,9 +1,17 @@
-# My Awesome CRUD API 
+# Go User Management 
 
-This is a backend focussed project mainly used to learn CRUD (create, read, update, delete), retrieve from Database(using mongodb) by using the api
+This project provides a Go-based RESTful API for user management, allowing you to create, retrieve, update, and delete users.
 
 <a href="https://www.youtube.com/watch?v=vDIAwtGU9LE">ref</a>
 
+**API Endpoints:**
+| HTTP Method | Endpoint                       | Description                                   |
+|-------------|---------------------------------|-----------------------------------------------|
+| POST        | /v1/user/create                 | Creates a new user in the database.           |
+| GET         | /v1/user/get/:name              | Retrieves a user by name from the database.  |
+| GET         | /v1/user/getall                | Retrieves all users from the database.      |
+| PATCH        | /v1/user/update                  | Updates an existing user in the database.     |
+| DELETE      | /v1/user/delete/:name              | Deletes a user by name from the database.      |
 
 run: 
 `go run main.go`
