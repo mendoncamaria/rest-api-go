@@ -4,7 +4,7 @@ This project provides a Go-based RESTful API for user management, allowing you t
 
 <a href="https://www.youtube.com/watch?v=vDIAwtGU9LE">ref</a>
 
-**API Endpoints:**
+## API Endpoints
 | HTTP Method | Endpoint                       | Description                                   |
 |-------------|---------------------------------|-----------------------------------------------|
 | POST        | /v1/user/create                 | Creates a new user in the database.           |
@@ -13,8 +13,12 @@ This project provides a Go-based RESTful API for user management, allowing you t
 | PATCH        | /v1/user/update                  | Updates an existing user in the database.     |
 | DELETE      | /v1/user/delete/:name              | Deletes a user by name from the database.      |
 
-run: 
-`go run main.go`
+# Installation and running
+1. Clone the repository: `git clone https://github.com/mendoncamaria/rest-api-go`
+2. Install dependencies: `go mod download`
+3. Run the API: `go run main.go`
+4. Start your MongoDB Database in Command Prompt/Terminal: `mongod`
+
 
 open thunderclient extension in vscode
 
