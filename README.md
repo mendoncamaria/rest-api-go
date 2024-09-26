@@ -1,4 +1,4 @@
-# Go User Management 
+# User Management 
 
 This project provides RESTful API for user management, allowing you to create, retrieve, update, and delete users. This project is created as part of learning GoLang. 
 
@@ -31,7 +31,6 @@ Go-Gin + MongoDB
 **Endpoint:** /v1/user/create <br />
 **Type:** POST <br />
 **Description:** This endpoint creates a new user in the database. If Database doesn't exist, it will create new and insert values in user collection. If already present, it will insert values in Database. It requires a JSON payload containing the user's information. Upon successful creation, it returns a success message.<br><br>
-
 **Creating New User With all the Details Available:**
 ```
 Request Payload:
@@ -51,7 +50,7 @@ Response:
 }
 ```
 
-**Creating User with Blank Payload**
+**Creating User with Blank Payload:**
 ```
 Request Payload:
 {}
@@ -62,7 +61,7 @@ Response:
 }
 ```
 
-**invalid address format**
+**Payload with invalid address format:**
 ```
 Request Payload:
 {
@@ -77,7 +76,7 @@ Response:
 }
 ```
 
-**missing name**
+**Payload with missing name:**
 ```
 Request Payload:
 {
@@ -95,7 +94,7 @@ Response:
 }
 ```
 
-**missing age**
+**Payload with missing age:**
 ```
 Request Payload:
 {
@@ -112,7 +111,7 @@ Response:
   "message": "Please Enter valid age of the user"
 }
 ```
-**missing address**
+**Payload with missing address:**
 ```
 Request Payload:
 {
@@ -151,30 +150,54 @@ Response:
   "message": "Please Enter valid age of the user"
 }
 ```
+### Retrieve Specific User from Database 
+**Endpoint:** /v1/user/get/:name <br />
+**Type:** GET <br />
+**Description:** This endpoint retrieves the user based on the name passed in the URL. The payload will always be blank<br><br>
+**Payload:** `{}`<br />
+**Retrieve existing User:**
+```
+URL: localhost:9090/v1/user/get/Maxie
 
-get specific user:      
-url: http://localhost:9090/v1/user/get/Maxie     
-type: GET     
-payload: blank     
-response 1 (no user found): {
+Response:
+{
+  "name": "Maxie",
+  "age": 25,
+  "address": {
+    "state": "karnataka",
+    "city": "udupi",
+    "pincode": 576101
+  }
+}
+```
+
+**Get User not available in the Database:**
+```
+URL: localhost:9090/v1/user/get/Maxei
+
+Response:
+{
   "message": "mongo: no documents in result"
-}     
-response 2 : {
-  "name": "Maxie",
-  "age": 25,
-  "address": {
-    "state": "karnataka",
-    "city": "udupi",
-    "pincode": 576101
-  }
 }
+```
 
--------------------------
-get all users:      
-url: http://localhost:9090/v1/user/getall     
-type: GET     
-payload: blank     
-response: [     
+**Incomplete URL to Retrieve User:**
+```
+URL: localhost:9090/v1/user/get
+
+Response:
+404 page not found
+```
+
+### Get All Users in Database
+**Endpoint:** /v1/user/getall <br />
+**Type:** GET <br />
+**Description:** This endpoint retrieves all the users in the specific database. The request payload will always be blank<br><br>
+
+**Payload:** `{}`<br />
+**Get all details from API:**
+```
+[     
   {
     "name": "Maxie",
     "age": 25,
@@ -185,30 +208,94 @@ response: [
     }
   }
 ]
+```
+**If no users are available in the database:**
+```
+{
+  "message": "documents not found"
+}
+```
 
--------------------------
-update user details:      
-url: http://localhost:9090/v1/user/update     
-type: PATCH     
-payload: {
+### Update user details 
+**Endpoint:** /v1/user/update <br />
+**Type:** PATCH <br />
+**Description:** This endpoint updates the user based on the name passed in the payload. The payload should consist of all parameters<br><br>
+
+**Update existing User:**
+```
+Payload:
+{
   "name": "Maxie",
   "age": 55,
   "address": {
     "state": "karnataka",
     "city": "udupi",
     "pincode": 576101
-  }
-  
-}     
-response: {
-  "message": "success"
-}
+  } 
+}  
 
--------------------------
-delete user:      
-url: http://localhost:9090/v1/user/delete/Maxie     
-type: DELETE      
-payload: blank     
-response: {
+Response:
+{
   "message": "success"
 }
+```
+
+**Update User not available in the Database:**
+```
+Payload:
+{
+  "name": "Maxei",
+  "age": 55,
+  "address": {
+    "state": "karnataka",
+    "city": "udupi",
+    "pincode": 576101
+  } 
+}  
+
+Response:
+{
+  "message": "no matched document found for update"
+}
+```
+
+**Incomplete URL to Delete User**
+```
+URL: localhost:9090/v1/user/delete
+
+Response:
+404 page not found
+```
+
+### Remove Specific User from Database 
+**Endpoint:** /v1/user/delete/:name <br />
+**Type:** DELETE <br />
+**Description:** This endpoint deletes the user based on the name passed in the URL. The payload will always be blank<br><br>
+**Payload:** `{}`<br />
+**Delete existing User:**
+```
+URL: localhost:9090/v1/user/delete/Maxie
+
+Response:
+{
+  "message": "success"
+}
+```
+
+**Delete User not available in the Database:**
+```
+URL: localhost:9090/v1/user/delete/Maxei
+
+Response:
+{
+  "message": "no matched document found for delete"
+}
+```
+
+**Incomplete URL to Delete User:**
+```
+URL: localhost:9090/v1/user/delete
+
+Response:
+404 page not found
+```
